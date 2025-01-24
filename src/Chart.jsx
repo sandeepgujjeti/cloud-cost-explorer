@@ -1,4 +1,4 @@
-import { Bar, BarChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, PieChart, Tooltip, XAxis, YAxis ,Pie} from "recharts";
 
 export default function Chart() {
     const data = [
@@ -10,15 +10,14 @@ export default function Chart() {
         { "id": "F", "value": 55 }
     ]
 
-    return (
+    const a=[23,34,56,76];
+    return (        
         <>
-            <BarChart width={400} height={400} data={data}>
-                <CartesianGrid />
-                <XAxis dataKey="id" />
-                <YAxis />
+            <PieChart width={400} height={400} >
+                
                 <Tooltip />
-                <Bar dataKey="value" fill="#abcdef"/>
-            </BarChart>
+                <Pie  data={data} dataKey       ="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8"/>
+            </PieChart>
         </>
     )
 } 
