@@ -10,7 +10,7 @@ export default function Chart() {
         { "id": "F", "value": 55 }
     ]
 
-    const a=[23,34,56,76];
+    const a=[23,34,56,76,52];
     return (        
         <>
             <PieChart width={400} height={400} >
