@@ -1,13 +1,34 @@
+import { useEffect, useState } from 'react';
 import './TableArea.css';
-import { data } from '../data/tabledata';
 
 const TableArea = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:3000/");
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setData(data);
+      } catch (error) {
+        console.error('Fetch error:', error);
+      }
+    }
+
+    fetchData();
+    console.log(Object.keys(data));
+    
+  }, []);
+
   return (
     <div className="table-wrapper">
       <table>
         <thead>
           <tr>
-            {Object.keys(data[0]).map((col, i) => (
+            {data.length > 0 && Object.keys(data[0]).map((col, i) => (
               <th key={i}>{col}</th>
             ))}
           </tr>
