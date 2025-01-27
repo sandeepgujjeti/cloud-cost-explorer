@@ -10,13 +10,13 @@ export default function Chart() {
         { "id": "F", "value": 55 }
     ]
 
-    const a=[23,34,56,76];
+    const a=[23,34,56,76,52];
     return (        
         <>
             <PieChart width={400} height={400} >
                 
                 <Tooltip />
-                <Pie  data={data} dataKey       ="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8"/>
+                <Pie  data={data} dataKey="value" nameKey="name" cx="50%" cy="50%" outerRadius={50} fill="#8884d8"/>
             </PieChart>
         </>
     )
