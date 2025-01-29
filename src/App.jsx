@@ -1,4 +1,4 @@
-import React from 'react'
+import "./App.css"
 import SideBar from './components/SideBar'
 import GraphArea from './components/GraphArea'
 import Dropdown from './components/Dropdown'
