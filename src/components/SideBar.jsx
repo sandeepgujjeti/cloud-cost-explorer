@@ -18,7 +18,7 @@ const SideBar = () => {
   }, [toggle])
 
   return (
-    <div>
+    <div  ref={sidebarRef} className="sidebar-nav">
       <button
         className="toggle-btn"
         onClick={(e) => setToggle(prev => !prev)}
@@ -26,7 +26,7 @@ const SideBar = () => {
         ☰
       </button>
      {/* {toggle && <div ref={sidebarRef} className="sidebar-nav"> */}
-     {<div ref={sidebarRef} className="sidebar-nav">
+     {<div >
 
         <h1>Cloud Cost explorer</h1>
         <ul>

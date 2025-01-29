@@ -56,38 +56,3 @@ body {
   padding: .5rem;
 }
 
-/*! layout code */
-.sidebar {
-  /* width: clamp(0px, 20vw, 300px); */
-  min-height: calc(100vh - 1rem);
-  /* background-color: hsl(0, 0%, 40%); */
-  background-color: var(--sidebar-color);
-  color: var(--sidebar-text-color);
-}
-
-
-.main-wrapper {
-  width: 100%;
-  background-color: hsl(0, 0%, 30%);
-  padding: .25rem;
-  height: calc(100vh - 1rem);
-}
-
-section.graph-wrapper {
-  display: grid;
-  height: 60%;
-  grid-template-columns: auto 30%;
-  gap: .25rem;
-  margin-bottom: .25rem;
-
-  .graph-area,
-  .dropdown {
-    width: 100%;
-    background-color: hsl(0, 0%, 20%);
-  }
-
-}
-
-.main-wrapper .table {
-  background-color: #333;
-}

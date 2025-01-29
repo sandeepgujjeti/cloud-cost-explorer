@@ -34,16 +34,6 @@
     transition: 0.5s;
 
 }
-
-
-
-
-
-.content {
-    flex: 1;
-    padding: 20px;
-    background-color: #ecf0f1;
-}
 .toggle-btn{
     width: 2rem;
     height: 2rem;
@@ -56,8 +46,6 @@
     z-index: 1000;
     font-weight: bold;
     font: size 0.1em;
-    
-
-    
 }
+
 
