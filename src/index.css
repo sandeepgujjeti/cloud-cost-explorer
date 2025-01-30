@@ -52,7 +52,6 @@ body {
 
 #root {
   display: flex;
-  gap: 1em;
   padding: .5rem;
 }
 
