@@ -11,7 +11,7 @@
 .main-wrapper {
   width: 100%;
   background-color: hsl(0, 0%, 30%);
-  padding: .25rem;
+  /* padding: .25rem; */
   height: calc(100vh - 1rem);
 }
 
