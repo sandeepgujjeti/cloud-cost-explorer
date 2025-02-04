@@ -7,7 +7,7 @@ const TableArea = () => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3000/");
+        const response = await fetch("http://localhost:3000/?columns=servicename&columns=billedamount");
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -19,8 +19,6 @@ const TableArea = () => {
     }
 
     fetchData();
-    console.log(Object.keys(data));
-    
   }, []);
 
   return (

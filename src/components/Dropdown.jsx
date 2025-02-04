@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Dropdown = () => {
+const Dropdown = ({ analysisType }) => {
   const [selectedItem, setSelectedItem] = useState("Dropdown");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -14,6 +14,10 @@ const Dropdown = () => {
     setSelectedItem(item);
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    
+  }, [analysisType])
 
   return (
     <div style={{ position: "relative", width: "200px" }}>

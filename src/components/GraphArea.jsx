@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
   BarChart,
   CartesianGrid,
@@ -9,25 +9,15 @@ import {
   Bar,
   ResponsiveContainer,
 } from "recharts";
+import Dropdown from './Dropdown';
 
-// const data = [
-//   { name: "Page A", pv: 2400, uv: 4000 },
-//   { name: "Page B", pv: 1398, uv: 3000 },
-//   { name: "Page C", pv: 9800, uv: 2000 },
-//   { name: "Page D", pv: 3908, uv: 2780 },
-//   { name: "Page E", pv: 4800, uv: 1890 },
-// ];
-
-
-
-
-const GraphArea = () => {
+const GraphArea = ({ analysisType }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:3000/");
+        const response = await fetch(`http://localhost:3000/?columns=servicename&columns=billedamount`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -37,27 +27,29 @@ const GraphArea = () => {
         console.error('Fetch error:', error);
       }
     }
-
     fetchData();
-    console.log(Object.keys(data));
-    
-  }, []);
 
-
-
+  }, [analysisType]);
 
   return (
-    <ResponsiveContainer   width={"100%"} height={"100%"} >
-    <BarChart width={"100%"} height={"100%"} data={data}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
-      <Tooltip />
-      <Legend />
-      <Bar dataKey="pv" fill="#8884d8" />
-      <Bar dataKey="uv" fill="#82ca9d" />
-    </BarChart>
-    </ResponsiveContainer>
+    <>
+      <section className="graph-area">
+        <ResponsiveContainer width={"100%"} height={"100%"} >
+          <BarChart width={"100%"} height={"100%"} data={data}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="servicename" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            <Bar dataKey="billedamount" fill="#8884d8" />
+            {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
+          </BarChart>
+        </ResponsiveContainer>
+      </section>
+      <section className="dropdown-area">
+        <Dropdown analysisType={analysisType} />
+      </section>
+    </>
   );
 };
 
