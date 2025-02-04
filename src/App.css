@@ -16,15 +16,23 @@
 }
 
 section.graph-wrapper {
-  display: grid;
+  display: flex;
   height: 60%;
-  grid-template-columns: auto 30%;
   gap: .25rem;
   margin-bottom: .25rem;
 
+  .graph-area {
+    flex: 3;
+  }
+
+  .dropdown-area {
+    flex: 1;
+  }
+
+
   .graph-area,
-  .dropdown {
-    width: 100%;
+  .dropdown-area {
+    /* width: 100%; */
     background-color: hsl(0, 0%, 20%);
     display: flex;
     justify-content: center;

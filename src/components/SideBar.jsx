@@ -1,45 +1,55 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "./SideBar.css"
+import { analysisTypes } from '../constants/contants';
 
-const SideBar = () => {
-  const sidebarRef = useRef(null);
-  const [toggle, setToggle] = useState(false)
-  console.log(toggle);
-  useEffect(() => {
-    if (sidebarRef.current) {
-      const sidebar = sidebarRef.current;
-      if (toggle) {
-        sidebar.style.width = "0px"
+const SideBar = ({ setAnalysisType, analysisType }) => {
+	const sidebarRef = useRef(null);
+	const [toggle, setToggle] = useState(false);
 
-      } else {
-        sidebar.style.width = "250px"
-      }
-    }
-  }, [toggle])
+	useEffect(() => {
+		if (sidebarRef.current) {
+			const sidebar = sidebarRef.current;
+			if (toggle) {
+				sidebar.style.width = "0px";
 
-  return (
-    <div  ref={sidebarRef} className="sidebar-nav">
-      <button
-        className="toggle-btn"
-        onClick={(e) => setToggle(prev => !prev)}
-      >
-        ☰
-      </button>
-     {/* {toggle && <div ref={sidebarRef} className="sidebar-nav"> */}
-     {<div >
+			} else {
+				sidebar.style.width = "250px";
+			}
+		}
 
-        <h1>Cloud Cost explorer</h1>
-        <ul>
+	}, [toggle]);
 
-          <li>Team Wise Analysis</li>
-          <li>Date Wise Analysis</li>
-          <li>Service Wise Analysis</li>
-        </ul>
-      </div>
-}
+	return (
+		<div ref={sidebarRef} className="sidebar-nav">
+			<button
+				className="toggle-btn"
+				onClick={(e) => setToggle(prev => !prev)}
+			>
+				☰
+			</button>
+			{/* {toggle && <div ref={sidebarRef} className="sidebar-nav"> */}
+			{<div >
 
-    </div>
-  )
+				<h1>Cloud Cost explorer</h1>
+				<ul>
+					{
+						Object.keys(analysisTypes).map((type, i) => (
+							<li
+								key={i}
+								className={`${analysisTypes[type] === analysisType ? "active" : ""}`}
+								onClick={() => {
+									setAnalysisType(analysisTypes[type]);
+								}}
+							>
+								{analysisTypes[type]}
+							</li>
+						))
+					}
+				</ul>
+			</div>
+			}
+		</div>
+	)
 }
 
 export default SideBar
