@@ -33,6 +33,7 @@ const GraphArea = ({ analysisType }) => {
     fetchData();
 
   }, [analysisType]);
+  
   const graphTypes = [
     analysisType
   ]
