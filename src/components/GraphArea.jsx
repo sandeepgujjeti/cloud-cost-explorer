@@ -8,8 +8,11 @@ import {
   Legend,
   Bar,
   ResponsiveContainer,
+  LineChart,
+  Line
 } from "recharts";
 import Dropdown from './Dropdown';
+import { analysisTypes } from "../constants/contants";
 
 const GraphArea = ({ analysisType }) => {
   const [data, setData] = useState([]);
@@ -30,22 +33,38 @@ const GraphArea = ({ analysisType }) => {
     fetchData();
 
   }, [analysisType]);
+  const graphTypes = [
+    analysisType
+  ]
 
   return (
     <>
-      <section className="graph-area">
+      <section className="graph-area overflow-x-hidden">
         <ResponsiveContainer width={"100%"} height={"100%"} >
-          <BarChart width={"100%"} height={"100%"} data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="servicename" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="billedamount" fill="#8884d8" />
-            {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
-          </BarChart>
+          {
+            analysisType === analysisTypes.team &&
+            < BarChart width={"100%"} height={"100%"} data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="servicename" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Bar dataKey="billedcapacity" fill="#8884d8" />
+            </BarChart>
+          }
+          {
+            analysisType === analysisTypes.service &&
+            <LineChart width={"70vw"} height={"40vh"} data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="servicename" />
+              <YAxis domain={['auto', 'auto']} tickFormatter={(value) => value.toLocaleString()} />
+              <Tooltip />
+              <Legend />
+              <Line type={"monotone"} dataKey="billedcapacity" />
+            </LineChart>
+          }
         </ResponsiveContainer>
-      </section>
+      </section >
       <section className="dropdown-area">
         <Dropdown analysisType={analysisType} />
       </section>

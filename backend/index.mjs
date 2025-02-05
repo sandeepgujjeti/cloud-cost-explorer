@@ -21,7 +21,10 @@ const PORT = 3000;
 app.get("/", async (req, res) => {
     const columns = req.query.columns;
     try {
-        const data = await client.query(`SELECT ${columns} FROM cloud_costs`);
+        const data = await client.query(`
+            SELECT servicename, billedcapacity FROM cloud_costs
+            ORDER BY servicename
+        `);
         console.log(data.rows);
 
         res.json(data.rows);
