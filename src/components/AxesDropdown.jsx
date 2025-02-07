@@ -1,9 +1,8 @@
 import styles from "./dropdown.module.css";
 import React, { useEffect, useState } from "react";
-import { teams, analysisTypes, dates, services } from "../constants/contants";
+import { axisValues } from "../constants/contants";
 
-const Dropdown = ({ analysisType, setColumn }) => {
-
+const Dropdown = ({ axis, axisValue, setAxisValue }) => {
   const [selectedItem, setSelectedItem] = useState("All Teams");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -13,36 +12,42 @@ const Dropdown = ({ analysisType, setColumn }) => {
   };
 
   useEffect(() => {
-    setColumn(selectedItem);
-
-  }, [selectedItem])
+    if (axis === "X") {
+      setAxisValue({
+        ...axisValue,
+        x: selectedItem
+      })
+    } else {
+      setAxisValue({
+        ...axisValue,
+        y: selectedItem
+      })
+    }
+  }, [selectedItem]);
 
   return (
-    <div className={styles.dropdown}>
+    <div className={styles.dropdown} tabIndex={0}>
       
       <div className={styles.label}>
-        Select Value for Graph
+        Select {axis === "X" ? "X" : "Y"} Axis Value
       </div>
 
       {/* Dropdown Button */}
       <button
-        onClick={() => setIsOpen(prev => !prev)}
+        onClick={() => setIsOpen((prev) => !prev)}
         className={styles.button}
+        aria-expanded={isOpen}
       >
         {selectedItem}
-        <span style={{ float: "right" }}>
-          {isOpen ? "▲" : "▼"}
-        </span>
+        <span className={styles.icon}>{isOpen ? "▲" : "▼"}</span>
       </button>
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <ul
-          className={styles.menu}
-        >
-          {["All Teams", ...teams].map((team, index) => (
+        <ul className={styles.menu}>
+          {["All Teams", ...axisValues].map((team, index) => (
             <li
-              key={index}
+              key={team}
               className={`${styles.menuItem}`}
               onClick={() => handleItemClick(team)}
             >

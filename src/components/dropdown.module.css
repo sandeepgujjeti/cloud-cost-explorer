@@ -1,0 +1,50 @@
+.dropdown {
+    position: relative;
+    width: 200px;
+}
+
+.button {
+    width: 100%;
+    padding: .5rem;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.icon {
+    float: right;
+}
+
+.menu {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    overflow: auto;
+    max-height: 300px;
+    scrollbar-width: thin;
+}
+
+.menuItem {
+    padding: .25rem;
+    cursor: pointer;
+    background-color: white;
+}
+
+.menuItem:hover,
+.focused {
+    background-color: #f0f8ff;
+}
+
+.label {
+    color: #fff;
+    margin-bottom: .5rem;
+}

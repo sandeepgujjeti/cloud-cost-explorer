@@ -1,3 +1,4 @@
+import './GraphArea.css'
 import React, { useState, useEffect } from "react";
 import {
   BarChart,
@@ -12,15 +13,24 @@ import {
   Line
 } from "recharts";
 import Dropdown from './Dropdown';
+import AxesDropdown from './AxesDropdown';
 import { analysisTypes } from "../constants/contants";
 
 const GraphArea = ({ analysisType }) => {
   const [data, setData] = useState([]);
+  const [column, setColumn] = useState("");
+  const [axisValue, setAxisValue] = useState({
+    x: "Finance",
+    y: "billedcapacity"
+  });
+
+  console.log(axisValue);
+  
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch(`http://localhost:3000/?columns=servicename&columns=billedamount`);
+        const response = await fetch(`http://localhost:3000/?analysis=team&teamid=Finance`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -32,11 +42,7 @@ const GraphArea = ({ analysisType }) => {
     }
     fetchData();
 
-  }, [analysisType]);
-  
-  const graphTypes = [
-    analysisType
-  ]
+  }, [analysisType, axisValue]);
 
   return (
     <>
@@ -44,30 +50,32 @@ const GraphArea = ({ analysisType }) => {
         <ResponsiveContainer width={"100%"} height={"100%"} >
           {
             analysisType === analysisTypes.team &&
-            < BarChart width={"100%"} height={"100%"} data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="servicename" />
-              <YAxis />
+            <BarChart width={"100%"} height={"100%"} data={data}>
+              <CartesianGrid strokeDasharray="2" strokeOpacity={.20} />
+              <XAxis dataKey={`${axisValue.x}`} />
+              <YAxis dataKey={`${axisValue.y}`} />
               <Tooltip />
               <Legend />
-              <Bar dataKey="billedcapacity" fill="#8884d8" />
+              <Bar dataKey={column} fill="#8884d8" />
             </BarChart>
           }
           {
             analysisType === analysisTypes.service &&
-            <LineChart width={"70vw"} height={"40vh"} data={data}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="servicename" />
-              <YAxis domain={['auto', 'auto']} tickFormatter={(value) => value.toLocaleString()} />
+            <LineChart width={"100%"} height={"100%"} data={data}>
+              <CartesianGrid strokeDasharray="2" strokeOpacity={.20} />
+              <XAxis dataKey={`${axisValue.x}`} />
+              <YAxis dataKey={`${axisValue.y}`} />
               <Tooltip />
               <Legend />
-              <Line type={"monotone"} dataKey="billedcapacity" />
+              <Line dataKey={column} fill="#8884d8" />
             </LineChart>
           }
         </ResponsiveContainer>
       </section >
       <section className="dropdown-area">
-        <Dropdown analysisType={analysisType} />
+        <AxesDropdown axis={"X"} axisValue={axisValue} setAxisValue={setAxisValue} />
+        <AxesDropdown axis={"Y"} axisValue={axisValue} setAxisValue={setAxisValue} />
+        <Dropdown analysisType={analysisType} setColumn={setColumn} />
       </section>
     </>
   );

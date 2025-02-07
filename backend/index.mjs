@@ -1,6 +1,8 @@
 import pkg from "pg";
 import express from "express";
 import cors from "cors";
+// import { analysisTypes } from "../src/constants/constants";
+// import { analysisTypes } from "../src/constants/contants";
 
 const { Client } = pkg;
 
@@ -17,17 +19,48 @@ const client = new Client({
 });
 
 client.connect();
-const PORT = 3000;
-app.get("/", async (req, res) => {
-    const columns = req.query.columns;
-    try {
-        const data = await client.query(`
-            SELECT servicename, billedcapacity FROM cloud_costs
-            ORDER BY servicename
-        `);
-        console.log(data.rows);
 
-        res.json(data.rows);
+const PORT = 3000;
+
+// let query = `
+//         SELECT servicename, ROUND(AVG(serviceusedpercentage)) as avg_serviceusedpercentage
+//         FROM cloud_costs
+//         GROUP BY servicename;
+// `;
+
+
+async function fetchData(analysis, teamid) {
+    console.log(analysis, teamid);
+
+    switch (analysis) {
+        case "team":
+            // query = "SELECT DISTINCT teamid FROM cloud_costs";
+            var query = `
+                SELECT teamid, billedcapacity
+                FROM cloud_costs 
+                WHERE teamid='${teamid}'
+            `;
+            break;
+        // default:
+        //     query = `
+        //         SELECT servicename, ROUND(AVG(serviceusedpercentage)) as avg_serviceusedpercentage
+        //         FROM cloud_costs
+        //         GROUP BY servicename;
+        //     `;
+        //     break;
+    }
+
+    const data = await client.query(query);
+    return data.rows;
+}
+
+app.get("/", async (req, res) => {
+    const { analysis, teamid } = req.query;
+    console.log(req.query);
+    try {
+        const data = await fetchData(analysis, teamid);
+        console.log(data);
+        res.json(data);
     } catch (e) {
         console.error("Database query failed:", e);
         res.status(500).json({ error: "Database query failed" });
