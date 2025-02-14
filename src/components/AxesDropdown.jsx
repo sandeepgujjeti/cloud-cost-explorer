@@ -1,6 +1,6 @@
 import styles from "./dropdown.module.css";
 import React, { useEffect, useState } from "react";
-import { axisValues } from "../constants/contants";
+import { xAxisValues, yAxisValues } from "../constants/contants";
 
 const Dropdown = ({ axis, axisValue, setAxisValue }) => {
   const [selectedItem, setSelectedItem] = useState("All Teams");
@@ -10,6 +10,8 @@ const Dropdown = ({ axis, axisValue, setAxisValue }) => {
     setSelectedItem(item);
     setIsOpen(false);
   };
+
+  const axisValues = axis === "X" ? xAxisValues : yAxisValues;
 
   useEffect(() => {
     if (axis === "X") {
@@ -27,7 +29,7 @@ const Dropdown = ({ axis, axisValue, setAxisValue }) => {
 
   return (
     <div className={styles.dropdown} tabIndex={0}>
-      
+
       <div className={styles.label}>
         Select {axis === "X" ? "X" : "Y"} Axis Value
       </div>
