@@ -12,6 +12,14 @@ export const analysisTypes = {
 export const teams = [
     "Finance", "DevOps", "Security", "R&D", "Analytics"
 ];
+// export const teams = [
+//     "team_001",
+//     "team_002",
+//     "team_003",
+//     "team_004",
+//     "team_005"
+// ];
+
 
 export const dates = [
     "yesterday", "last_week", "last_month", "quarter_year", "half_year", "last_year"
@@ -22,7 +30,8 @@ export const services = [
 ];
 
 
-export const axisValues = [
+export const xAxisValues = [
+
     "servicename",
     "sourcecloud",
     "billedcapacity",
@@ -34,4 +43,14 @@ export const axisValues = [
     "monitoredstarttime",
     "monitoredendtime",
     "interval_mins",
+];
+
+export const yAxisValues = [
+    "billedcapacity",
+    "billedamount",
+    "usedcapacity",
+    "serviceusedpercentage",
+    "utilizedamount",
+    "interval_mins",
 ] 
+

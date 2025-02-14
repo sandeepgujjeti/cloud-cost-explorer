@@ -27,6 +27,11 @@ const PORT = 3000;
 //         FROM cloud_costs
 //         GROUP BY servicename;
 // `;
+let query = `
+        SELECT servicename, billedcapacity
+        FROM cloud_costs
+        GROUP BY servicename;
+`;
 
 
 async function fetchData(analysis, teamid) {
@@ -34,12 +39,8 @@ async function fetchData(analysis, teamid) {
 
     switch (analysis) {
         case "team":
+            query = "SELECT DISTINCT teamid FROM cloud_costs";
             // query = "SELECT DISTINCT teamid FROM cloud_costs";
-            var query = `
-                SELECT teamid, billedcapacity
-                FROM cloud_costs 
-                WHERE teamid='${teamid}'
-            `;
             break;
         // default:
         //     query = `
@@ -58,6 +59,12 @@ app.get("/", async (req, res) => {
     const { analysis, teamid } = req.query;
     console.log(req.query);
     try {
+        const query = `
+            SELECT servicename, billedcapacity
+            FROM cloud_costs
+            GROUP BY servicename;
+        `;
+        // const data = await client.query(query);
         const data = await fetchData(analysis, teamid);
         console.log(data);
         res.json(data);
