@@ -40,11 +40,7 @@ async function fetchData(analysis, teamid) {
     switch (analysis) {
         case "team":
             query = "SELECT DISTINCT teamid FROM cloud_costs";
-            var query = `
-                SELECT teamid, billedcapacity
-                FROM cloud_costs 
-                WHERE teamid='${teamid}'
-            `;
+            // query = "SELECT DISTINCT teamid FROM cloud_costs";
             break;
         // default:
         //     query = `

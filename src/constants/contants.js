@@ -20,6 +20,7 @@ export const teams = [
 //     "team_005"
 // ];
 
+
 export const dates = [
     "yesterday", "last_week", "last_month", "quarter_year", "half_year", "last_year"
 ];
@@ -30,6 +31,7 @@ export const services = [
 
 
 export const xAxisValues = [
+
     "servicename",
     "sourcecloud",
     "billedcapacity",
@@ -51,3 +53,4 @@ export const yAxisValues = [
     "utilizedamount",
     "interval_mins",
 ] 
+

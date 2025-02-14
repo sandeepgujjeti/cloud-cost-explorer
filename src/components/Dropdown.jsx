@@ -32,6 +32,7 @@ const Dropdown = ({ analysisType, setColumn, axisValue }) => {
     }
   }, [analysisType])
 
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -52,7 +53,6 @@ const Dropdown = ({ analysisType, setColumn, axisValue }) => {
 
   return (
     <div className={styles.dropdown}>
-
       <div className={styles.label}>
         Select Value for Graph
       </div>
@@ -78,8 +78,9 @@ const Dropdown = ({ analysisType, setColumn, axisValue }) => {
               key={index}
               className={`${styles.menuItem}`}
               onClick={() => handleItemClick(item)}
+
             >
-              {item}
+              {team}
             </li>
           ))}
         </ul>

@@ -26,12 +26,12 @@ const GraphArea = ({ analysisType }) => {
 
   console.log(axisValue);
 
-
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch(`http://localhost:3000/?analysis=team&teamid=Finance`);
         // const response = await fetch(`http://localhost:3000/`);
+
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
@@ -77,6 +77,7 @@ const GraphArea = ({ analysisType }) => {
         {/* <AxesDropdown axis={"X"} axisValue={axisValue} setAxisValue={setAxisValue} />
         <AxesDropdown axis={"Y"} axisValue={axisValue} setAxisValue={setAxisValue} />
         <Dropdown analysisType={analysisType} setColumn={setColumn} /> */}
+
         <AxesDropdown axis={"X"} axisValue={axisValue} setAxisValue={setAxisValue} />
         <AxesDropdown axis={"Y"} axisValue={axisValue} setAxisValue={setAxisValue} />
         <Dropdown analysisType={analysisType} setColumn={setColumn} />

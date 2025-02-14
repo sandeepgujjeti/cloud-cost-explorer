@@ -11,9 +11,9 @@ const Dropdown = ({ axis, axisValue, setAxisValue }) => {
     setIsOpen(false);
   };
 
-  const axisValues = axis === "X" ? xAxisValues : yAxisValues;
-
-  useEffect(() => {
+ const axisValues = axis === "X" ? xAxisValues : yAxisValues;
+ 
+ useEffect(() => {
     if (axis === "X") {
       setAxisValue({
         ...axisValue,
@@ -29,7 +29,6 @@ const Dropdown = ({ axis, axisValue, setAxisValue }) => {
 
   return (
     <div className={styles.dropdown} tabIndex={0}>
-
       <div className={styles.label}>
         Select {axis === "X" ? "X" : "Y"} Axis Value
       </div>
