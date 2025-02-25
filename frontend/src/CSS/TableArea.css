@@ -1,0 +1,33 @@
+.table-wrapper {
+    max-height: calc(40vh - 1rem);
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    /* margin: 10px 0; */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: #555;
+    color: #fff;
+    padding: .25rem;
+}
+
+tbody tr:nth-child(2n) {
+    background-color: #222;
+}
+
+tbody td {
+    padding: .25rem;
+    color: #fff;
+    text-align: center;
+}
+
+tbody tr:hover {
+    background-color: #444;
+}
