@@ -1,17 +1,14 @@
-const Team = "Team Wise Analysis";
-const Date = "Date Wise Analysis";
-const Service = "Service Wise Analysis";
+const Overall = "overall";
+const Team = "team";
+const Product = "product";
 
 export const analysisTypes = {
+    overall: Overall,
     team: Team,
-    date: Date,
-    service: Service
+  Product: Product,
 };
 
-
-export const teams = [
-    "Finance", "DevOps", "Security", "R&D", "Analytics"
-];
+export const teams = ["Finance", "DevOps", "Security", "R&D", "Analytics"];
 // export const teams = [
 //     "team_001",
 //     "team_002",
@@ -20,29 +17,29 @@ export const teams = [
 //     "team_005"
 // ];
 
-
 export const dates = [
-    "yesterday", "last_week", "last_month", "quarter_year", "half_year", "last_year"
+  "yesterday",
+  "last_week",
+  "last_month",
+  "quarter_year",
+  "half_year",
+  "last_year",
 ];
 
-export const services = [
-    "AWS", "Azure", "Google_cloud", "IBM"
-];
-
+export const services = ["AWS", "Azure", "Google_cloud", "IBM"];
 
 export const xAxisValues = [
-
-    "servicename",
-    "sourcecloud",
-    "billedcapacity",
-    "billedamount",
-    "usedcapacity",
-    "serviceusedpercentage",
-    "utilizedamount",
-    "teamid",
-    "monitoredstarttime",
-    "monitoredendtime",
-    "interval_mins",
+  "servicename",
+  "sourcecloud",
+  "billedcapacity",
+  "billedamount",
+  "usedcapacity",
+  "serviceusedpercentage",
+  "utilizedamount",
+  "teamid",
+  "monitoredstarttime",
+  "monitoredendtime",
+  "interval_mins",
 ];
 
 export const yAxisValues = [
@@ -84,4 +81,31 @@ export const lineChartdata = [
     { month: "Dec", Alpha: 350, Beta: 250, Gamma: 950, Delta: 1050, Meu: 850 },
 ];
 
+export const COLORS = [
+  "#1b5e2",
+  "#2e7d32",
+  "#388e3c",
+  "#43a047",
+  "#4caf50",
+  "#66bb6a",
+  "#81c784",
+  "#a5d6a7",
+  "#c8e6c9",
+  "#e8f5e9",
+];
 
+export const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index,
+}) => {
+  const RADIAN = Math.PI / 180;
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.65;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+  0;
+};
