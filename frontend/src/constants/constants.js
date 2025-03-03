@@ -63,9 +63,6 @@ export const pieData = [
     { name: "Product J", value: 9.0 },
 ];
 
-export const COLORS = ["#1b5e2", "#2e7d32", "#388e3c", "#43a047", "#4caf50",
-    "#66bb6a", "#81c784", "#a5d6a7", "#c8e6c9", "#e8f5e9"];
-
 export const lineChartdata = [
     { month: "Jan", Alpha: 900, Beta: 800, Gamma: 400, Delta: 500, Meu: 300 },
     { month: "Feb", Alpha: 850, Beta: 750, Gamma: 450, Delta: 550, Meu: 350 },
