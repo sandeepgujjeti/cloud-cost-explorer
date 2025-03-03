@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './TableArea.css';
+import '../CSS/TableArea.css';
 
 const TableArea = () => {
   const [data, setData] = useState([]);
