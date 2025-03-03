@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "../CSS/SideBar.css"
-import { analysisTypes } from '../constants/constants';
+import { analysisTypes } from '../constants/constants'
 
 const SideBar = ({ setAnalysisType, analysisType }) => {
 	const sidebarRef = useRef(null);
