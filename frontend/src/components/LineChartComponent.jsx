@@ -11,32 +11,29 @@ import {
     LineChart,
     Line
 } from "recharts";
+import { lineChartdata, COLORS } from '../constants/constants';
+import "../CSS/LineChart.css"
+
 
 const LineChartComponent = () => {
-    const data = [
-        { "name": "Jan", "value": 400 },
-        { "name": "Feb", "value": 300 },
-        { "name": "Mar", "value": 500 },
-        { "name": "Apr", "value": 700 },
-        { "name": "May", "value": 600 },
-        { "name": "Jun", "value": 800 },
-        { "name": "Jul", "value": 900 }
-      ]
-    return (
-        <section className="graph-area overflow-x-hidden">
-            {/* <ResponsiveContainer width={"500px"} height={"500px"} > */}
 
-                {
-                    <LineChart width={"500px"} height={"500px"} data={data}>
-                        <CartesianGrid strokeDasharray="2" strokeOpacity={.20} />
-                        <XAxis dataKey={"name"} />
-                        <YAxis dataKey={"value"} />
-                        <Tooltip />
-                        <Legend />
-                        <Line dataKey={"value"} fill="#8884d8" />
-                    </LineChart>
-                }
-            {/* </ResponsiveContainer> */}
+    let i = 0; 
+    return (
+        <section className="line-chart-wrapper">
+            <ResponsiveContainer width={500} height={500} >
+                <LineChart width={"500px"} height={"500px"} data={lineChartdata}>
+                    <CartesianGrid strokeDasharray="2" strokeOpacity={.20} />
+                    <XAxis dataKey={"month"} />
+                    <YAxis dataKey={"Alpha"} />
+                    <Tooltip />
+                    <Legend />
+                    <Line dataKey={"Alpha"} fill={COLORS[i]}/>
+                    <Line dataKey={"Beta"} fill={COLORS[i++]} />
+                    <Line dataKey={"Gamma"} fill={COLORS[i++]} />
+                    <Line dataKey={"Delta"} fill={COLORS[i++]} />
+                    <Line dataKey={"Meu"} fill={COLORS[i++]} />
+                </LineChart>
+            </ResponsiveContainer>
         </section >
     )
 }
