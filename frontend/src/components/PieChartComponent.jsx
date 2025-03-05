@@ -7,8 +7,9 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-// import { pieData, COLORS } from '../constants/constants.js';
-// import { analysisTypes } from 'constants/constants.js'
+import { analysisTypes, pieChartColors } from "../constants/constants";
+import { useContext } from "react";
+import { AppContext } from "../App";
 
 const PieChartComponent = () => {
   const pieData = [
@@ -37,6 +38,10 @@ const PieChartComponent = () => {
     "#e8f5e9",
   ];
   // <div>PieChartComponent
+  const { analysisType,setAnalysisType } = useContext(AppContext);
+  console.log("Current Analysis Type:", analysisType);
+  console.log("Current Pie Chart Color:", );
+    const baseColor = pieChartColors[analysisType];
   return (
     <ResponsiveContainer width={"100%"} height={350}>
       <PieChart width={"100%"} height={"100%"}>
@@ -44,11 +49,11 @@ const PieChartComponent = () => {
           data={pieData}
           dataKey="value"
           innerRadius={75}
-          fill="#8884d8"
+          fill={baseColor}
           label={({ name }) => name}
         >
           {pieData.map((entry, index) => (
-            <Cell key={index} fill={COLORS[index]} />
+            <Cell key={index} fill={`hsl(${baseColor},50%, ${10 * index}%)`} />
           ))}
         </Pie>
         <Label />
