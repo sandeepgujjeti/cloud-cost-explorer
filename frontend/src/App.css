@@ -1,13 +1,66 @@
+
+/*! App Level CSS */
 .main-wrapper {
   display: flex;
-
 }
-.content {
+
+
+/* Dashboard Level CSS */
+.dashboard-wrapper {
+  width: 100%;
+}
+
+.dashboard-wrapper section {
+  width: 100%;
   display: flex;
-}
-.expenditure-card{
-  border: 5px  solid;
+  justify-content: center;
   align-items: center;
-  
-
+  /* border: 1px solid; */
 }
+
+.content-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.expenditure-card {
+  background-color: #E5E5E5;
+  /* Light gray background */
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  width: 100%;
+  max-width: 500px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.expenditure-card h2 {
+  font-size: 24px;
+  font-weight: 500;
+  color: black;
+}
+
+.time-period {
+  font-size: 22px;
+  font-weight: 400;
+  color: black;
+}
+
+.total-amount {
+  font-size: 48px;
+  font-weight: 700;
+  color: black;
+  margin-top: 20px;
+}
+
+.expenditure-card p {
+  font-size: 20px;
+}
+
+/* Team Level CSS */
+
+
+/* Product Level CSS */
