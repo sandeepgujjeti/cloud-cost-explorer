@@ -14,15 +14,12 @@ const App = () => {
         <SideBar />
         <main className="content-wrapper">  
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/overall" element={<Dashboard />} />
             <Route path="/team" element={<Team/>} />
             <Route path="/product" element={<Product />} />
-
-
           </Routes>
         </main>
       </div>
-
     </>
 
   )
