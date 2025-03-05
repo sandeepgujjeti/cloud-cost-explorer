@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "../CSS/SideBar.css"
 import { analysisTypes } from '../constants/constants'
+import { Link } from 'react-router-dom';
 
 const SideBar = ({ setAnalysisType, analysisType }) => {
 	const sidebarRef = useRef(null);
@@ -13,7 +14,7 @@ const SideBar = ({ setAnalysisType, analysisType }) => {
 				sidebar.style.width = "0px";
 
 			} else {
-				sidebar.style.width = "250px";
+				sidebar.style.width = "20vw";
 			}
 		}
 
@@ -40,7 +41,9 @@ const SideBar = ({ setAnalysisType, analysisType }) => {
 									setAnalysisType(analysisTypes[type]);
 								}}
 							>
-								{analysisTypes[type]}
+								<Link to={analysisTypes[type]}>
+									{analysisTypes[type]}
+								</Link>
 							</li>
 						))
 					}

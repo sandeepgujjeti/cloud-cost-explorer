@@ -1,12 +1,10 @@
 import React from 'react'
 import {
-    BarChart,
     CartesianGrid,
     XAxis,
     YAxis,
     Tooltip,
     Legend,
-    Bar,
     ResponsiveContainer,
     LineChart,
     Line
@@ -16,25 +14,23 @@ import "../CSS/LineChart.css"
 
 
 const LineChartComponent = () => {
-
-    let i = 0; 
+    let i = 0;
     return (
-        <section className="line-chart-wrapper">
-            <ResponsiveContainer width={500} height={500} >
-                <LineChart width={"500px"} height={"500px"} data={lineChartdata}>
-                    <CartesianGrid strokeDasharray="2" strokeOpacity={.20} />
-                    <XAxis dataKey={"month"} />
-                    <YAxis dataKey={"Alpha"} />
-                    <Tooltip />
-                    <Legend />
-                    <Line dataKey={"Alpha"} fill={COLORS[i]}/>
-                    <Line dataKey={"Beta"} fill={COLORS[i++]} />
-                    <Line dataKey={"Gamma"} fill={COLORS[i++]} />
-                    <Line dataKey={"Delta"} fill={COLORS[i++]} />
-                    <Line dataKey={"Meu"} fill={COLORS[i++]} />
-                </LineChart>
-            </ResponsiveContainer>
-        </section >
+        <ResponsiveContainer width={"100%"} height={300} >
+            <LineChart width={300} height={500} data={lineChartdata}>
+                <CartesianGrid strokeDasharray="2" strokeOpacity={.20} />
+                <XAxis dataKey={"month"} />
+                <YAxis dataKey={"Alpha"} />
+                <Tooltip />
+                <Legend />
+                <Line dataKey={"Alpha"} fill={COLORS[i]} strokeWidth={3} />
+                {/* <Line dataKey={"Beta"} fill={COLORS[i++]} />
+                <Line dataKey={"Gamma"} fill={COLORS[i++]} />
+                <Line dataKey={"Delta"} fill={COLORS[i++]} />
+                <Line dataKey={"Meu"} fill={COLORS[i++]} /> */}
+
+            </LineChart>
+        </ResponsiveContainer>
     )
 }
 
