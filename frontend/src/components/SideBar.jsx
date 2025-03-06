@@ -2,10 +2,13 @@ import React, { useEffect, useRef, useState } from 'react'
 import "../CSS/SideBar.css"
 import { analysisTypes } from '../constants/constants'
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AppContext } from '../App';
 
-const SideBar = ({ setAnalysisType, analysisType }) => {
+const SideBar = () => {
 	const sidebarRef = useRef(null);
 	const [toggle, setToggle] = useState(false);
+	const { analysisType, setAnalysisType } = useContext(AppContext);
 
 	useEffect(() => {
 		if (sidebarRef.current) {
