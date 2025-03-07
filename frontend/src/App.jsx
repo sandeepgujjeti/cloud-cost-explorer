@@ -5,11 +5,16 @@ import { Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Team from "./components/Team";
 import Product from "./components/Product";
+import { useState ,createContext} from "react";
+
+export const AppContext = createContext()
 
 
 const App = () => {
+  const [analysisType, setAnalysisType] = useState("overall");
   return (
     <>
+    <AppContext.Provider value={{analysisType, setAnalysisType}}>
       <div className="main-wrapper">
         <SideBar />
         <main className="content-wrapper">  
@@ -20,6 +25,7 @@ const App = () => {
           </Routes>
         </main>
       </div>
+    </AppContext.Provider>
     </>
 
   )

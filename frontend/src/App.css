@@ -6,11 +6,11 @@
 
 
 /* Dashboard Level CSS */
-.dashboard-wrapper {
+.dashboard-wrapper, .team-wrapper, .product-wrapper {
   width: 100%;
 }
 
-.dashboard-wrapper section {
+.dashboard-wrapper section, .team-wrapper section, .product-wrapper section {
   width: 100%;
   display: flex;
   justify-content: center;
