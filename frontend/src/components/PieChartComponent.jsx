@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   PieChart,
   Pie,
@@ -12,52 +12,73 @@ import { useContext } from "react";
 import { AppContext } from "../App";
 
 const PieChartComponent = () => {
-  const pieData = [
-    { name: "Product A", value: 9.9 },
-    { name: "Product B", value: 13.2 },
-    { name: "Product C", value: 10.2 },
-    { name: "Product D", value: 12.6 },
-    { name: "Product E", value: 8.1 },
-    { name: "Product F", value: 7.3 },
-    { name: "Product G", value: 7.9 },
-    { name: "Product H", value: 10.9 },
-    { name: "Product I", value: 10.8 },
-    { name: "Product J", value: 9.0 },
-  ];
+  const {analysisType, setAnalysisType } = useContext(AppContext);
+  const baseColor = pieChartColors[analysisType];
+  const [legendName, setLegendName] = useState("");
 
-  const COLORS = [
-    "#1b5e2",
-    "#2e7d32",
-    "#388e3c",
-    "#43a047",
-    "#4caf50",
-    "#66bb6a",
-    "#81c784",
-    "#a5d6a7",
-    "#c8e6c9",
-    "#e8f5e9",
-  ];
-  // <div>PieChartComponent
-  const { analysisType,setAnalysisType } = useContext(AppContext);
-  console.log("Current Analysis Type:", analysisType);
-  console.log("Current Pie Chart Color:", );
-    const baseColor = pieChartColors[analysisType];
+  const [pieData, setPieData] = useState([
+    { name: "name_1", value: 100 },
+    { name: "name_2", value: 200 },
+    { name: "name_3", value: 300 },
+    { name: "name_4", value: 400 },
+    { name: "name_5", value: 500 },
+    { name: "name_6", value: 600 },
+    { name: "name_7", value: 700 },
+  ]);
+
+  useEffect(() => {
+    const fetchPieData = async () => {
+      const fetchData = await fetch(`http://localhost:3000/${analysisType}`);
+      
+      const res = await fetchData.json();
+
+      if (res) {
+        setPieData(res);
+      }
+    }
+
+    fetchPieData();
+  }, [analysisType]);
+
+  switch (analysisType) {
+    case analysisType === analysisTypes["overall"]:
+      setLegendName("month_name")
+      break;
+    case analysisType === analysisTypes["team"]:
+      setLegendName("TeamId")
+      break;
+    case analysisType === analysisTypes["product"]:
+      setLegendName("servicename")
+      break;
+  }
+
   return (
     <ResponsiveContainer width={"100%"} height={350}>
       <PieChart width={"100%"} height={"100%"}>
         <Pie
           data={pieData}
-          dataKey="value"
+          dataKey="total_cost"
           innerRadius={75}
           fill={baseColor}
-          label={({ name }) => name}
+          label={({ name, total_cost }) => total_cost}
         >
           {pieData.map((entry, index) => (
-            <Cell key={index} fill={`hsl(${baseColor},50%, ${10 * index}%)`} />
+            <Cell key={index} fill={`hsl(${baseColor},50%, ${10 * index / 2}%)`} />
           ))}
         </Pie>
         <Label />
-        <Legend layout="vertical" verticalAlign="middle" align="right" />
+        <Legend
+          layout="vertical"
+          verticalAlign="top"
+          align="right"
+          payload={pieData.map((entry, index) => ({
+            // value: entry[legendName],
+            value: entry[legendName],
+            // type: "square",
+            color: `hsl(${baseColor},50%, ${10 * index / 2}%)`,
+            id: entry.name,
+          }))}
+        />
       </PieChart>
     </ResponsiveContainer>
   );
