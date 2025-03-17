@@ -1,29 +1,54 @@
-import React from 'react'
-import {
-    CartesianGrid,
-    XAxis,
-    YAxis,
-    Tooltip,
-    Legend,
-    ResponsiveContainer,
-    LineChart,
-    Line
-} from "recharts";
+import React, { useContext, useEffect, useState } from 'react'
+import { CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from "recharts";
 import { lineChartdata, COLORS } from '../constants/constants';
-import "../CSS/LineChart.css"
+import "../CSS/LineChart.css";
+import { AppContext } from '../App';
+import { analysisTypes } from '../constants/constants';
 
 
 const LineChartComponent = () => {
+    const { analysisType } = useContext(AppContext);
+    const [lineData, setLineData] = useState([]);
+    const [legendName, setLegendName] = useState("");
+
+    useEffect(() => {
+        const fetchPieData = async () => {
+            const fetchData = await fetch(`http://localhost:3000/${analysisType}/line`);
+            const res = await fetchData.json();
+            
+            if (res) {
+                setLineData(res);
+            }
+        }
+
+        fetchPieData();
+
+        switch (analysisType) {
+            case analysisTypes["overall"]:
+                setLegendName("month_name")
+                break;
+            case analysisTypes["team"]:
+                setLegendName("TeamId");
+                break;
+            case analysisTypes["product"]:
+                setLegendName("ServiceName")
+                break;
+            default:
+                setLegendName("month_name");
+        }
+
+    }, [analysisType]);
+
     let i = 0;
     return (
         <ResponsiveContainer width={"100%"} height={300} >
-            <LineChart width={300} height={500} data={lineChartdata}>
-                <CartesianGrid strokeDasharray="2" strokeOpacity={.20} />
-                <XAxis dataKey={"month"} />
-                <YAxis dataKey={"Alpha"} />
+            <LineChart width={300} height={500} data={lineData}>
+                <CartesianGrid strokeDasharray="10" stroke='#ccc' />
+                <XAxis dataKey={legendName} />
+                <YAxis dataKey={"total_cost"} />
                 <Tooltip />
                 <Legend />
-                <Line dataKey={"Alpha"} fill={COLORS[i]} strokeWidth={3} />
+                <Line dataKey={"total_cost"} fill={COLORS[i]} strokeWidth={3} />
                 {/* <Line dataKey={"Beta"} fill={COLORS[i++]} />
                 <Line dataKey={"Gamma"} fill={COLORS[i++]} />
                 <Line dataKey={"Delta"} fill={COLORS[i++]} />
