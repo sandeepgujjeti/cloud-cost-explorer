@@ -32,9 +32,9 @@ const PieChartComponent = () => {
       const fetchData = await fetch(`http://localhost:3000/${analysisType}/pie`);
       const res = await fetchData.json();
 
-      if (res) {
-        setPieData(res);
-      }
+      // if (res) {
+      setPieData(res);
+      // }
     }
 
     fetchPieData();
@@ -71,7 +71,10 @@ const PieChartComponent = () => {
           ))}
         </Pie>
         <Label />
-        <Legend
+        {
+          analysisType !== analysisTypes["Product"]
+          && 
+          <Legend
           layout="vertical"
           verticalAlign="top"
           align="right"
@@ -80,7 +83,7 @@ const PieChartComponent = () => {
             color: `hsl(${baseColor},50%, ${10 * index / 2}%)`,
             id: entry.name,
           }))}
-        />
+        />}
         <Tooltip formatter={(value, name, props) => [`${value}`, `${props.payload[legendName]}`]} />
       </PieChart>
     </ResponsiveContainer>

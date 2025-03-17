@@ -83,6 +83,7 @@ app.get('/team/table', async (req, res) => {
     res.send(data.rows);
 });
 
+
 // API for product table chart
 app.get('/product/table', async (req, res) => {
     // res.send('Hello World!');
