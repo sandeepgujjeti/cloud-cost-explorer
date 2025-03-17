@@ -12,7 +12,7 @@ import { useContext } from "react";
 import { AppContext } from "../App";
 
 const PieChartComponent = () => {
-  const {analysisType, setAnalysisType } = useContext(AppContext);
+  const { analysisType, setAnalysisType } = useContext(AppContext);
   const baseColor = pieChartColors[analysisType];
   const [legendName, setLegendName] = useState("");
 
@@ -28,29 +28,34 @@ const PieChartComponent = () => {
 
   useEffect(() => {
     const fetchPieData = async () => {
-      const fetchData = await fetch(`http://localhost:3000/${analysisType}`);
-      
+      const fetchData = await fetch(`http://localhost:3000/${analysisType}/pie`);
+
       const res = await fetchData.json();
 
-      if (res) {
-        setPieData(res);
-      }
+      // if (res) {
+      setPieData(res);
+      // }
     }
 
     fetchPieData();
+
+    switch (analysisType) {
+      case analysisTypes["overall"]:
+        setLegendName("month_name")
+        break;
+      case analysisTypes["team"]:
+        setLegendName("TeamId")
+        break;
+      case analysisTypes["product"]:
+        setLegendName("ServiceName")
+        break;
+    }
+
+
   }, [analysisType]);
 
-  switch (analysisType) {
-    case analysisType === analysisTypes["overall"]:
-      setLegendName("month_name")
-      break;
-    case analysisType === analysisTypes["team"]:
-      setLegendName("TeamId")
-      break;
-    case analysisType === analysisTypes["product"]:
-      setLegendName("servicename")
-      break;
-  }
+  console.log(pieData);
+
 
   return (
     <ResponsiveContainer width={"100%"} height={350}>
@@ -67,7 +72,10 @@ const PieChartComponent = () => {
           ))}
         </Pie>
         <Label />
-        <Legend
+        {
+          analysisType !== analysisTypes["Product"]
+          && 
+          <Legend
           layout="vertical"
           verticalAlign="top"
           align="right"
@@ -78,7 +86,7 @@ const PieChartComponent = () => {
             color: `hsl(${baseColor},50%, ${10 * index / 2}%)`,
             id: entry.name,
           }))}
-        />
+        />}
       </PieChart>
     </ResponsiveContainer>
   );

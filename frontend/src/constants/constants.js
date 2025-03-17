@@ -5,7 +5,7 @@ const Product = "product";
 export const analysisTypes = {
   overall: Overall,
   team: Team,
-  Product: Product,
+  product: Product,
 };
 
 export const teams = ["Finance", "DevOps", "Security", "R&D", "Analytics"];

@@ -1,5 +1,5 @@
 import React from "react";
-import TableAreaComponent from "./TableAreaComponent";
+import TableAreaComponent from "./Table";
 import PieChartComponent from "./PieChartComponent";
 import LineChartComponent from "./LineChartComponent";
 
