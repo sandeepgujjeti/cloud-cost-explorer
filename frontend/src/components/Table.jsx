@@ -1,46 +1,61 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../CSS/TableArea.css';
-import { analysisTypes, tableData } from '../constants/constants';
+import { tableData } from '../constants/constants';
 import { AppContext } from '../App';
+import { useContext } from 'react';
 
 const TableAreaComponent = () => {
-  const [data, setData] = useState([]);
-  const {analysisType} = useContext(AppContext)
+  const [data, setData] = useState([{}]);
+  const { analysisType } = useContext(AppContext);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchTableData = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/${analysisType}/table`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setData(data);
+        const fetchedData = await fetch(`http://localhost:3000/${analysisType}/table`);
+        const res = await fetchedData.json();
+        setData(res);
+        console.log("Table Data", res);
       } catch (error) {
-        console.error('Fetch error:', error);
+        console.log("There was an error fetching Table Data", error);
       }
     }
-
-    fetchData();
+    
+    fetchTableData();
   }, [analysisType]);
 
-  console.log(data);
-  
   return (
     <div className="table-wrapper">
-      <table>
+      {/* <table>
         <thead>
           <tr>
-            { Object.keys(data[0]).map((header, i) => (
+            {data[0].map((header, i) => (
               <th key={i}>{header}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          { tableData.slice(1).map((row, i) => (
+          {data.slice(1).map((row, i) => (
             <tr key={i}>
-              { row.map((cell, j) => (
+              {row.forEach((cell, j) => (
                 <td key={j}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
+      <table>
+        <thead>
+          <tr>
+            {Object.keys(data[0]).map((key, i) => (
+              <th key={i}>{key}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row, i) => (
+            <tr key={i}>
+              {Object.keys(row).map((cell, j) => (
+                <td key={j}>{row[cell]}</td>
               ))}
             </tr>
           ))}

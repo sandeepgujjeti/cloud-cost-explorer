@@ -6,6 +6,7 @@ import {
   Label,
   Legend,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts";
 import { analysisTypes, pieChartColors } from "../constants/constants";
 import { useContext } from "react";
@@ -14,7 +15,7 @@ import { AppContext } from "../App";
 const PieChartComponent = () => {
   const { analysisType, setAnalysisType } = useContext(AppContext);
   const baseColor = pieChartColors[analysisType];
-  const [legendName, setLegendName] = useState("");
+  const [legendName, setLegendName] = useState("month_name");
 
   const [pieData, setPieData] = useState([
     { name: "name_1", value: 100 },
@@ -29,7 +30,6 @@ const PieChartComponent = () => {
   useEffect(() => {
     const fetchPieData = async () => {
       const fetchData = await fetch(`http://localhost:3000/${analysisType}/pie`);
-
       const res = await fetchData.json();
 
       // if (res) {
@@ -44,17 +44,16 @@ const PieChartComponent = () => {
         setLegendName("month_name")
         break;
       case analysisTypes["team"]:
-        setLegendName("TeamId")
+        setLegendName("TeamId");
         break;
       case analysisTypes["product"]:
         setLegendName("ServiceName")
         break;
+      default:
+        setLegendName("month_name");
     }
 
-
   }, [analysisType]);
-
-  console.log(pieData);
 
 
   return (
@@ -65,7 +64,7 @@ const PieChartComponent = () => {
           dataKey="total_cost"
           innerRadius={75}
           fill={baseColor}
-          label={({ name, total_cost }) => total_cost}
+          label={({ payload, value }) => `${value}`}
         >
           {pieData.map((entry, index) => (
             <Cell key={index} fill={`hsl(${baseColor},50%, ${10 * index / 2}%)`} />
@@ -80,17 +79,15 @@ const PieChartComponent = () => {
           verticalAlign="top"
           align="right"
           payload={pieData.map((entry, index) => ({
-            // value: entry[legendName],
             value: entry[legendName],
-            // type: "square",
             color: `hsl(${baseColor},50%, ${10 * index / 2}%)`,
             id: entry.name,
           }))}
         />}
+        <Tooltip formatter={(value, name, props) => [`${value}`, `${props.payload[legendName]}`]} />
       </PieChart>
     </ResponsiveContainer>
   );
-  // </div>
 };
 
 export default PieChartComponent;

@@ -1,39 +1,28 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import "../CSS/SideBar.css"
 import { analysisTypes } from '../constants/constants'
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../App';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGlobe, faPeopleGroup, faTags } from "@fortawesome/free-solid-svg-icons";
 
 const SideBar = () => {
 	const sidebarRef = useRef(null);
 	const [toggle, setToggle] = useState(false);
 	const { analysisType, setAnalysisType } = useContext(AppContext);
 
-	useEffect(() => {
-		if (sidebarRef.current) {
-			const sidebar = sidebarRef.current;
-			if (toggle) {
-				sidebar.style.width = "0px";
-
-			} else {
-				sidebar.style.width = "20vw";
-			}
-		}
-
-	}, [toggle]);
+	const icons = [faGlobe, faPeopleGroup, faTags];
 
 	return (
-		<div ref={sidebarRef} className="sidebar-nav">
+		<div ref={sidebarRef} style={{ width: toggle ? "0" : "100%" }} className="sidebar-nav">
 			<button
 				className="toggle-btn"
 				onClick={(e) => setToggle(prev => !prev)}
 			>
 				☰
 			</button>
-			{/* {toggle && <div ref={sidebarRef} className="sidebar-nav"> */}
 			{<div>
-				{/* <h1>Cloud Cost explorer</h1> */}
 				<ul>
 					{
 						Object.keys(analysisTypes).map((type, i) => (
@@ -44,7 +33,8 @@ const SideBar = () => {
 									setAnalysisType(analysisTypes[type]);
 								}}
 							>
-								<Link to={analysisTypes[type]}>
+								<Link className='analysis-link' id={analysisType} to={analysisTypes[type]}>
+									<i><FontAwesomeIcon icon={icons[i]} /></i>
 									{analysisTypes[type]}
 								</Link>
 							</li>

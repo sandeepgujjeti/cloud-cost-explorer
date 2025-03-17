@@ -8,6 +8,10 @@
 /* Dashboard Level CSS */
 .dashboard-wrapper, .team-wrapper, .product-wrapper {
   width: 100%;
+  height: 100%;
+  background-color: #eee;
+  display: grid;
+  place-items: center;
 }
 
 .dashboard-wrapper section, .team-wrapper section, .product-wrapper section {

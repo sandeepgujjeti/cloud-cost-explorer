@@ -1,9 +1,9 @@
 .sidebar-nav {
-    max-width: 20vw;
-    background-color: #2c3e50;
-    color: white;
+    max-width: 15rem;
+    background-color: #ccc;
     display: flex;
-    /* overflow: hidden; */
+    flex-shrink: 0;
+    overflow: hidden;
     flex-direction: column;
     transform-origin: left;
     transition: 0.5s;
@@ -12,7 +12,7 @@
     height: 100vh;
 
     a {
-        color: #fff !important;
+        color: inherit;
         width: 100%;
         font-size: 1.25rem;
         text-decoration: none;
@@ -33,15 +33,15 @@
 
 .sidebar-nav ul li {
     width: 100%;
-    margin: auto;
+    margin: .5rem auto;
     flex-shrink: 0;
-    padding: 0.5rem 0;
-    text-align: center;
+    /* text-align: center; */
     text-transform: capitalize;
 }
 
 .sidebar-nav ul li:hover {
-    background-color: #bdbdbd;
+    /* background-color: #bdbdbd; */    
+    background-color: #e0e0e0;
     transition: 0.5s;
     cursor: default;
 }
@@ -50,8 +50,8 @@
     width: 2rem;
     height: 2rem;
     border: 2px solid;
-    background-color: #777;
-    color: #fff;
+    background-color: #eee;
+    /* color: #fff; */
     position: absolute;
     left: 1rem;
     top: 1rem;
@@ -64,12 +64,22 @@
     border: none;
 
     &:hover {
-        background-color: #ccc;
+        background-color: #fff;
         color: #000;
         cursor: pointer;
     }
 }
 
 .active {
-    background-color: hsl(0, 0%, 70%);
+    background-color: #eee;
+}
+
+.analysis-link {
+    width: 100%;
+    display: block;
+    padding: .75rem 0;
+
+    i {
+        margin-inline: 1rem;
+    }
 }

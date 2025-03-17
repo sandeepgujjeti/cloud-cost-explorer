@@ -11,7 +11,7 @@ export const AppContext = createContext()
 
 
 const App = () => {
-  const [analysisType, setAnalysisType] = useState("overall");
+  const [analysisType, setAnalysisType] = useState("");
   return (
     <>
     <AppContext.Provider value={{analysisType, setAnalysisType}}>
