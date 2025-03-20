@@ -15,7 +15,7 @@ const Landing = () => {
             {isUserLoggedIn ? (
                 <div>
                     <p>Hello, {currentUser.email}! You are logged in.</p>
-                    <Link to="/dashboard" style={styles.button}>Go to Dashboard</Link>
+                    <Link to="/overall">Go to Dashboard</Link>
                 </div>
             ) : (
                 <div>
