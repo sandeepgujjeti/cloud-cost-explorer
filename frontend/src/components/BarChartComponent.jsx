@@ -2,11 +2,8 @@ import React, { useEffect, useState } from "react";
 import {
     Cell,
     Label,
-    Area,
     ResponsiveContainer,
     BarChart,
-    Scatter,
-    ComposedChart,
     Bar,
     CartesianGrid,
     XAxis,

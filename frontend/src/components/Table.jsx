@@ -1,15 +1,18 @@
-import { useEffect, useState } from 'react';
-import '../CSS/TableArea.css';
-import { tableData } from '../constants/constants';
-import { AppContext } from '../App';
-import { useContext } from 'react';
+import { useEffect, useState, useContext } from "react";
+import "../CSS/TableArea.css";
+import { AppContext } from "../App";
 
-const TableAreaComponent = () => {
+const Table = () => {
   const [data, setData] = useState([{}]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const { analysisType } = useContext(AppContext);
 
   useEffect(() => {
     const fetchTableData = async () => {
+      setLoading(true);
+      setError(null);
+
       try {
         const fetchedData = await fetch(`http://localhost:3000/${analysisType}/table`);
         const res = await fetchedData.json();
@@ -18,8 +21,8 @@ const TableAreaComponent = () => {
       } catch (error) {
         console.log("There was an error fetching Table Data", error);
       }
-    }
-    
+    };
+
     fetchTableData();
   }, [analysisType]);
 
@@ -65,4 +68,4 @@ const TableAreaComponent = () => {
   );
 };
 
-export default TableAreaComponent;
+export default Table;
