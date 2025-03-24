@@ -135,3 +135,8 @@ export const pieChartColors = {
   team: 200,
   product: 300,
 };
+
+export const barChartColor = {
+  team: 20,
+  product: 300,
+}
