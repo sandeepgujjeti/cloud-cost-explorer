@@ -92,6 +92,14 @@ app.get('/product/table', async (req, res) => {
     res.send(data.rows);
 });
 
+// API for individualProduct 
+app.get("/individual-product", async (req, res) => {
+    const query = queries.product.individualProduct;
+    const data = await client.query(query);
+    res.send(data.rows);
+});
+
+
 // Start server
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
