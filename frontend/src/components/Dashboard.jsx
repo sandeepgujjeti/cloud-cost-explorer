@@ -1,25 +1,18 @@
 import React from 'react'
 import PieChartComponent from "./PieChartComponent";
 import LineChartComponent from "./LineChartComponent";
-import { logOut } from '../firebase/auth';
+import { logOut } from '../auth';
 import { useNavigate } from 'react-router-dom';
 
 
 
 const Dashboard = () => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
 
 
   return (
     <>
       <main className='dashboard-wrapper'>
-        <button className="" 
-        onClick={() =>{
-          logOut()
-          navigate("/signup")
-        }}
-        > logout</button>
-
         <section className='content-wrapper'>
           <section>
             <div className='expenditure-card'>

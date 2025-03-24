@@ -37,6 +37,26 @@
     flex-shrink: 0;
     /* text-align: center; */
     text-transform: capitalize;
+    
+    button {
+        display: 100%;
+        font-size: 1.1rem;
+        text-align: center; 
+        width: 100%;
+        background-color: #ccc;
+        border: none;
+        padding: 1rem 0;
+        cursor: pointer;
+        transition: 0.5s;
+        outline: none;
+        border: none;
+
+        &:hover {
+            background-color: #e0e0e0;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+    }
 }
 
 .sidebar-nav ul li:hover {
