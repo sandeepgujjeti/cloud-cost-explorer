@@ -120,23 +120,23 @@ const queries = {
         `
         ,
         individualProduct: `
-        select
-            "ServiceName",
-            sum("UtilizedAmount") as total_cost,
-            extract(month from "MonitoredStartTime") as month_number,
-            TO_CHAR("MonitoredStartTime", 'month') as month_name
-        from
-            Cloud_Costs
-        where
-            "MonitoredStartTime" >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '12 month'
-        group by
-            "ServiceName",
-            extract(
-                month
-                from
-                "MonitoredStartTime"
-            ),
-            TO_CHAR("MonitoredStartTime", 'month')
+            select
+                "ServiceName",
+                sum("UtilizedAmount") as total_cost,
+                extract(month from "MonitoredStartTime") as month_number,
+                TRIM(TO_CHAR("MonitoredStartTime", 'month')) as month_name
+            from
+                Cloud_Costs
+            where
+                "MonitoredStartTime" >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '12 month'
+            group by
+                "ServiceName",
+                extract(
+                    month
+                    from
+                    "MonitoredStartTime"
+                ),
+                TO_CHAR("MonitoredStartTime", 'month')
         `    
     },
 };

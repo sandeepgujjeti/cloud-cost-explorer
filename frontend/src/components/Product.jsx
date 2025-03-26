@@ -61,7 +61,7 @@ const Product = () => {
                 .filter((serviceObj) => serviceObj.ServiceName === item)
                 .map((serviceObj) => ({
                   month_name: serviceObj.month_name,
-                  total_cost: Number(serviceObj.total_cost),
+                  total_cost: serviceObj.total_cost,
                 }))}
             />
 
