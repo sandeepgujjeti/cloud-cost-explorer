@@ -6,7 +6,7 @@ import { AppContext } from '../App';
 const HorizontalBarChart = ({ analysis, barData }) => {
     const { analysisType } = useContext(AppContext);
 
-    console.log(barData);
+    console.log(barData[0]);
     
 
     const months = [
