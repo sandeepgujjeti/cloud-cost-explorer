@@ -1,0 +1,39 @@
+.hero-wrapper {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero-wrapper header {
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+}
+
+.hero-wrapper h1 {
+    color: #333;
+}
+
+.hero-wrapper h2,
+.hero-wrapper h3 {
+    color: #444;
+}
+
+.hero-wrapper p {
+    line-height: 1.6;
+}
+
+.hero-wrapper ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.hero-wrapper ul li {
+    background: #eee;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+}

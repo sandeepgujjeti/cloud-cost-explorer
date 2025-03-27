@@ -16,6 +16,13 @@ app.get("/", (req, res) => {
     res.send("<h1>This is The Home Page Send a request to different API</h1>");
 })
 
+//! Teams API
+app.get("/individual-team", async (req, res) => {
+    const query = queries.team.individualTeam;
+  const data = await client.query(query);
+  res.send(data.rows);
+})
+
 //! APIs for Pie Chart
 
 // API for overall pie chart
@@ -72,7 +79,7 @@ app.get('/product/line', async (req, res) => {
 // API for overall table chart
 app.get('/overall/table', async (req, res) => {
     // res.send('Hello World!');
-    res.send("<h1>There is no Table Data in Overall</h1>");
+    res.json("<h1>There is no Table Data in Overall</h1>");
 });
 
 // API for team table chart
@@ -91,6 +98,14 @@ app.get('/product/table', async (req, res) => {
     const data = await client.query(query);
     res.send(data.rows);
 });
+
+// API for individualProduct 
+app.get("/individual-product", async (req, res) => {
+    const query = queries.product.individualProduct;
+    const data = await client.query(query);
+    res.send(data.rows);
+});
+
 
 // Start server
 app.listen(port, () => {
