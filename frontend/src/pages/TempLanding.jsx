@@ -1,6 +1,6 @@
 import React from 'react';
 import '../CSS/landing.css';
-import img1 from "../assets/cloud-cost.webp";
+import images from '../constants/images';
 
 function TempLanding() {
     return (
@@ -13,6 +13,7 @@ function TempLanding() {
                 <p className="text-lg text-gray-600 mb-6 text-center max-w-2xl">
                     <i> <b> "Track, analyze, and optimize your cloud expenses with real-time dashboards and detailed insights."</b></i>
                 </p>
+                <img src={images.barChar1} />
                 {/* <p>
                     As companies move more operations to the cloud, managing cloud costs becomes harder.
                     Cloud services provide various services with different pricing, making it difficult
