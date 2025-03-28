@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, LineChart, Line } from "recharts";
-import { lineChartdata, COLORS } from '../constants/constants';
+import { lineChartColor } from '../constants/constants';
 import "../CSS/LineChart.css";
 import { AppContext } from '../App';
 import { analysisTypes } from '../constants/constants';
@@ -39,7 +39,8 @@ const LineChartComponent = () => {
 
     }, [analysisType]);
 
-    let i = 0;
+    const baseColor = lineChartColor[analysisType];
+
     return (
         <ResponsiveContainer width={"100%"} height={300} >
             <LineChart width={300} height={500} data={lineData}>
@@ -48,12 +49,7 @@ const LineChartComponent = () => {
                 <YAxis dataKey={"total_cost"} />
                 <Tooltip />
                 <Legend />
-                <Line dataKey={"total_cost"} fill={COLORS[i]} strokeWidth={3} />
-                {/* <Line dataKey={"Beta"} fill={COLORS[i++]} />
-                <Line dataKey={"Gamma"} fill={COLORS[i++]} />
-                <Line dataKey={"Delta"} fill={COLORS[i++]} />
-                <Line dataKey={"Meu"} fill={COLORS[i++]} /> */}
-
+                <Line dataKey={"total_cost"} stroke={`hsl(${baseColor},50%,50%)`} strokeWidth={3} />
             </LineChart>
         </ResponsiveContainer>
     )

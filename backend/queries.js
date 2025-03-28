@@ -1,4 +1,16 @@
 const queries = {
+    totalExpenditure: `
+        select 
+            sum("UtilizedAmount") as total_cost
+        from 
+            cloud_costs;
+    `,
+    totalAvgExpenditure: `
+        select 
+            sum("UtilizedAmount") as total_cost
+        from 
+            cloud_costs;
+    `,
     overall: {
         pie: `
             SELECT 
@@ -22,7 +34,11 @@ const queries = {
             WHERE 
                 "MonitoredStartTime" >= DATE_TRUNC('month', CURRENT_DATE) - INTERVAL '12 months'
             GROUP BY month_name, month_number
-            ORDER BY month_number;        `
+            ORDER BY month_number;        
+        `,
+        totalExpenditure: `
+            
+        `
     },
     team: {
         pie: `
@@ -137,8 +153,54 @@ const queries = {
                     "MonitoredStartTime"
                 ),
                 TO_CHAR("MonitoredStartTime", 'month')
-        `    
+        `
     },
+    cloud: {
+        pie: `
+            select
+                "SourceCloud" as cloud,
+                SUM("UtilizedAmount") as total_cost
+            from
+                cloud_costs
+            group by
+                "SourceCloud"
+            order by
+                "SourceCloud"
+        `,
+        table: `
+            select
+                "SourceCloud" as cloud,
+                "BilledCapacity",
+                "BilledAmount",
+                "UsedCapacity",
+                "ServiceUsedPercentage",
+                "UtilizedAmount",
+                "MonitoredStartTime",
+                "MonitoredEndTime"
+            from
+                cloud_costs
+            order by
+                "MonitoredStartTime",
+                "SourceCloud" desc
+        `,
+        individualCloud: `
+            select
+                "SourceCloud" as cloud,
+                SUM("UtilizedAmount") as total_cost,
+                extract(month from "MonitoredStartTime") as month_number,
+                trim(to_char("MonitoredStartTime", 'month')) as month_name
+            from
+                cloud_costs
+            group by 
+                "SourceCloud",
+                extract(month from "MonitoredStartTime"),
+                trim(to_char("MonitoredStartTime", 'month'))
+            order by
+                month_number, 
+                month_name,
+                "SourceCloud" desc
+        `
+    }
 };
 
 export default queries;

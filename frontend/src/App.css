@@ -2,12 +2,11 @@
 /*! App Level CSS */
 .main-wrapper {
   display: flex;
-  background-color: #eee;
 }
 
 
-/* Dashboard Level CSS */
-.dashboard-wrapper, .team-wrapper, .product-wrapper {
+.dashboard-wrapper {
+  overflow: hidden;
   width: 100%;
   height: 100%;
   max-height: 100vh;
@@ -15,6 +14,24 @@
   /* display: grid;
   place-items: center; */
   overflow-y: auto;
+  
+  section {
+    width: 100%;
+  }
+}
+
+.team-wrapper, .product-wrapper, .cloud-wrapper {
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  /* background-color: #eee; */
+  /* display: grid;
+  place-items: center; */
+  overflow-y: auto;
+
+  section {
+    width: 100%;
+  }
 }
 
 .dashboard-wrapper section {
@@ -25,6 +42,11 @@
   /* border: 1px solid; */
 }
 
+.expenditure-wrapper {
+  display: flex;
+  /* flex-direction: column; */
+}
+
 .content-wrapper {
   width: 100%;
   display: flex;
@@ -33,13 +55,14 @@
 }
 
 .expenditure-card {
-  background-color: #e6e6e6;
+  width: 100%;
+  background-color: #eaeaea;
   /* Light gray background */
-  padding: 20px;
+  flex-shrink: 0;
+  padding: 2rem;
   text-align: center;
   font-family: Arial, sans-serif;
-  width: 100%;
-  max-width: 500px;
+  width: fit-content;
   margin: auto;
   border-radius: 10px;
 }

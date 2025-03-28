@@ -10,7 +10,9 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState(null);
-    const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+    const [isUserLoggedIn, setIsUserLoggedIn] = useState(
+        localStorage.getItem("isUserLoggedIn")
+    );
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
