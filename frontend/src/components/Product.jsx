@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import TableAreaComponent from "./Table";
-import PieChartComponent from "./PieChartComponent";
 import BarChartComponent from "./BarChartComponent";
-import LineChartComponent from "./LineChartComponent";
 import ComposedChartComponent from "./ComposedChartComponent";
 import HorizontalBarChart from "./HorizontalBarChart";
 import "../CSS/product.css";

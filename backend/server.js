@@ -16,11 +16,25 @@ app.get("/", (req, res) => {
     res.send("<h1>This is The Home Page Send a request to different API</h1>");
 })
 
+//! API for total expenditure
+app.get("/total-expenditure", async (req, res) => {
+    const query = queries.totalExpenditure;
+    const data = await client.query(query);
+    res.send(data.rows);
+});
+
+//! API for total average expenditure
+app.get("/total-avg-expenditure", async (req, res) => {
+    const query = queries.totalAvgExpenditure;
+    const data = await client.query(query);
+    res.send(data.rows);
+});
+
 //! Teams API
 app.get("/individual-team", async (req, res) => {
     const query = queries.team.individualTeam;
-  const data = await client.query(query);
-  res.send(data.rows);
+    const data = await client.query(query);
+    res.send(data.rows);
 })
 
 //! APIs for Pie Chart
@@ -45,6 +59,14 @@ app.get('/team/pie', async (req, res) => {
 app.get('/product/pie', async (req, res) => {
     // res.send('Hello World!');
     const query = queries.product.pie;
+    const data = await client.query(query);
+    res.send(data.rows);
+});
+
+// API for cloud pie chart
+app.get('/cloud/pie', async (req, res) => {
+    // res.send('Hello World!');
+    const query = queries.cloud.pie;
     const data = await client.query(query);
     res.send(data.rows);
 });
@@ -99,9 +121,27 @@ app.get('/product/table', async (req, res) => {
     res.send(data.rows);
 });
 
+// API for cloud chart
+app.get('/cloud/table', async (req, res) => {
+    // res.send('Hello World!');
+    const query = queries.cloud.table;
+    const data = await client.query(query);
+    res.send(data.rows);
+});
+
+
+//! APIs for individual Analysis
+
 // API for individualProduct 
 app.get("/individual-product", async (req, res) => {
     const query = queries.product.individualProduct;
+    const data = await client.query(query);
+    res.send(data.rows);
+});
+
+// API for individual Cloud 
+app.get("/individual-cloud", async (req, res) => {
+    const query = queries.cloud.individualCloud;
     const data = await client.query(query);
     res.send(data.rows);
 });

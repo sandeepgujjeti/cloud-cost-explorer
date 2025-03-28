@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react"
+import React, { useState, createContext, useEffect } from "react"
 import SideBar from "./components/SideBar"
 import Dashboard from "./components/Dashboard";
 import Team from "./components/Team";
@@ -9,31 +9,66 @@ import Landing from "./pages/Landing";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { useAuth } from "./context/AuthContext";
+import Cloud from "./components/Cloud";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
 
 export const AppContext = createContext()
 
 const App = () => {
-  const [analysisType, setAnalysisType] = useState("");
+  const [analysisType, setAnalysisType] = useState(localStorage.getItem("analysisType") || "overall");
   const { isUserLoggedIn } = useAuth();
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem("analysisType", analysisType);
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const handleResize = () => setIsSmallScreen(mediaQuery.matches);
+
+    handleResize(); // initial check
+    mediaQuery.addEventListener('change', handleResize);
+    return () => mediaQuery.removeEventListener('change', handleResize);
+  }, [analysisType, setAnalysisType]);
+
+  if (isSmallScreen) {
+    return (
+      <div className="small-screen">
+        <i>
+          <FontAwesomeIcon icon={faInfo} />
+        </i>
+        Please Open the website in a Desktop with a Larger Screen Size
+      </div>
+    )
+  }
 
   return (
     <>
       <AppContext.Provider value={{ analysisType, setAnalysisType }}>
-        <div className="main-wrapper">
-          {isUserLoggedIn && <SideBar />}
-          <main className="content-wrapper">
-            <Routes>
-              <Route path="/" element={<Landing />} />
-              <Route path="/overall" element={<Dashboard />} />
-              <Route path="/team" element={<Team />} />
-              <Route path="/product" element={<Product />} />
-              <Route path="/signup" element={<Register />} />
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </main>
-        </div>
+        {
+          !isUserLoggedIn
+            ? (
+              <Routes>
+                <Route path="/" element={<Landing />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Register />} />
+              </Routes>
+            )
+            : (<div className="main-wrapper">
+              <SideBar />
+              <main className="content-wrapper">
+                <Routes>
+                  <Route path="/overall" element={<Dashboard />} />
+                  <Route path="/team" element={<Team />} />
+                  <Route path="/product" element={<Product />} />
+                  <Route path="/cloud" element={<Cloud />} />
+                  <Route path="/signup" element={<Register />} />
+                  <Route path="/login" element={<Login />} />
+                </Routes>
+              </main>
+            </div>)
+        }
 
-      </AppContext.Provider>
+      </AppContext.Provider >
     </>
   )
 };

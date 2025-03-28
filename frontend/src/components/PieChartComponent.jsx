@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
   PieChart,
   Pie,
@@ -9,7 +9,6 @@ import {
   Tooltip,
 } from "recharts";
 import { analysisTypes, pieChartColors } from "../constants/constants";
-import { useContext } from "react";
 import { AppContext } from "../App";
 
 const PieChartComponent = () => {
@@ -49,6 +48,9 @@ const PieChartComponent = () => {
       case analysisTypes["product"]:
         setLegendName("ServiceName")
         break;
+      case analysisTypes["cloud"]:
+        setLegendName("cloud")
+        break;
       default:
         setLegendName("month_name");
     }
@@ -64,27 +66,28 @@ const PieChartComponent = () => {
           dataKey="total_cost"
           innerRadius={75}
           fill={baseColor}
-          label={({ payload, value }) => `${value}`}
+          strokeWidth={.25}
+          label={({ payload, value }) => `₹ ${value.toLocaleString("en-IN")}`}
         >
           {pieData.map((entry, index) => (
-            <Cell key={index} fill={`hsl(${baseColor},50%, ${10 * index / 2}%)`} />
+            <Cell key={index} fill={`hsl(${baseColor}, 50%, ${analysisType === analysisTypes.cloud ? (index + 1) * 20 : 10 * index / 2}%)`} />
           ))}
         </Pie>
         <Label />
         {
           analysisType !== analysisTypes["Product"]
-          && 
+          &&
           <Legend
-          layout="vertical"
-          verticalAlign="top"
-          align="right"
-          payload={pieData.map((entry, index) => ({
-            value: entry[legendName],
-            color: `hsl(${baseColor},50%, ${10 * index / 2}%)`,
-            id: entry.name,
-          }))}
-        />}
-        <Tooltip formatter={(value, name, props) => [`${value}`, `${props.payload[legendName]}`]} />
+            layout="vertical"
+            verticalAlign="top"
+            align="right"
+            payload={pieData.map((entry, index) => ({
+              value: entry[legendName],
+              color: `hsl(${baseColor},50%, ${10 * index / 2}%)`,
+              id: entry.name,
+            }))}
+          />}
+        <Tooltip formatter={(value, name, props) => [`₹ ${value.toLocaleString("en-IN")}`, `${props.payload[legendName]}`]} />
       </PieChart>
     </ResponsiveContainer>
   );

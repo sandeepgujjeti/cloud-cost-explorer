@@ -1,13 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { Cell, ResponsiveContainer, BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from "recharts";
-import { barChartColor} from '../constants/constants';
+import { barChartColor, horizontalBarChartColor} from '../constants/constants';
 import { AppContext } from '../App';
 
-const HorizontalBarChart = ({ analysis, barData }) => {
+const HorizontalBarChart = ({ barData }) => {
     const { analysisType } = useContext(AppContext);
-
-    console.log(barData[0]);
-    
 
     const months = [
         "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
@@ -18,7 +15,7 @@ const HorizontalBarChart = ({ analysis, barData }) => {
         total_cost: barData.find(data => data.month_name.toLowerCase() === month.toLowerCase())?.total_cost || 0
     }));
 
-    const baseColor = barChartColor[analysisType];
+    const baseColor = horizontalBarChartColor[analysisType];
 
     return (
         <ResponsiveContainer width={"100%"} height={300}>

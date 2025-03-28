@@ -1,0 +1,24 @@
+.cloud-wrapper section {
+    width: 100%;
+}
+
+.individual-cloud-wrapper,
+.individual-product-wrapper {
+    padding-inline: 2vw;
+    display: grid;
+    gap: 5vw;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.individual-cloud {
+    min-width: 100px;
+    /* border: 1px solid #333; */
+
+    .cloud {
+        text-transform: capitalize;
+        text-align: center;
+        font-size: 2.25rem;
+        font-weight: bolder;
+        padding-bottom: 1.75rem;
+    }
+}

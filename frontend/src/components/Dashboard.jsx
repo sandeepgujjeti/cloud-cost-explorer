@@ -1,24 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PieChartComponent from "./PieChartComponent";
 import LineChartComponent from "./LineChartComponent";
-import { logOut } from '../auth';
-import { useNavigate } from 'react-router-dom';
-
-
 
 const Dashboard = () => {
+  const [totalExpenditure, setTotalExpenditure] = useState(0);
+
+  useEffect(() => {
+    const fetchExpenditure = async () => {
+      const data = await (await fetch("http://localhost:3000/total-expenditure")).json();
+      if (data) {
+        setTotalExpenditure(data[0].total_cost.toLocaleString("en-IN"));
+      }
+    }
+
+    fetchExpenditure();
+  }, []);
+
   return (
     <>
       <main className='dashboard-wrapper'>
-        <section className='content-wrapper'>
-          <section>
+        <section className='dashboard-content-wrapper'>
+          <section className='expenditure-wrapper'>
             <div className='expenditure-card'>
               <h2 className="">
                 Total Expenditure <br /> Over Year
               </h2>
               <p className="time-period">Feb 2024 - Jan 2025</p>
-              <h1 className="total-amount">₹ 5,00,000</h1>
+              <h1 className="total-amount">₹{totalExpenditure}</h1>
             </div>
+            {/* <div className='expenditure-card'>
+              <h2 className="">
+                Total Average Expenditure <br /> Over Year
+              </h2>
+              <p className="time-period">Feb 2024 - Jan 2025</p>
+              <h1 className="total-amount">₹ 5,00,000</h1>
+            </div> */}
           </section>
           <section>
             <PieChartComponent />

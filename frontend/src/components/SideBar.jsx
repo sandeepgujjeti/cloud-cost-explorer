@@ -1,11 +1,11 @@
 import React, { useRef, useState } from 'react'
 import "../CSS/SideBar.css"
-import { analysisTypes } from '../constants/constants'
+import { analysisTypes, pieChartColors } from '../constants/constants'
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AppContext } from '../App';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGlobe, faPeopleGroup, faTags } from "@fortawesome/free-solid-svg-icons";
+import { faCloud, faGlobe, faPeopleGroup, faTags } from "@fortawesome/free-solid-svg-icons";
 import { logOut } from '../auth';
 
 const SideBar = () => {
@@ -13,8 +13,13 @@ const SideBar = () => {
 	const [toggle, setToggle] = useState(false);
 	const { analysisType, setAnalysisType } = useContext(AppContext);
 
-	const icons = [faGlobe, faPeopleGroup, faTags];
-	const { isUserLoggedIn } = useContext(AppContext);
+	const icons = [
+		{ icon: faGlobe, baseColor: 100 },
+		{ icon: faPeopleGroup, baseColor: 200 },
+		{ icon: faTags, baseColor: 275 },
+		{ icon: faCloud, baseColor: 10 },
+	];
+
 	const navigate = useNavigate();
 
 	return (
@@ -37,23 +42,23 @@ const SideBar = () => {
 								}}
 							>
 								<Link className='analysis-link' id={analysisType} to={analysisTypes[type]}>
-									<i><FontAwesomeIcon icon={icons[i]} /></i>
+									<i><FontAwesomeIcon icon={icons[i].icon} color={`hsl(${icons[i].baseColor}, 50%, 30%)`} /></i>
 									{analysisTypes[type]}
 								</Link>
 							</li>
 						))
 					}
 					{/* {isUserLoggedIn && */}
-						{<li>
-							<button
-								onClick={() => {
-									logOut()
-									navigate("/")
-								}}
-							>
-								Log Out
-							</button>
-						</li>}
+					{<li>
+						<button
+							onClick={() => {
+								logOut()
+								navigate("/")
+							}}
+						>
+							Log Out
+						</button>
+					</li>}
 				</ul>
 			</div>
 			}

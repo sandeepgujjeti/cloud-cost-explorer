@@ -29,10 +29,10 @@ const Login = () => {
             <main className="login-main">
                 <div className="login-box">
                     <div className="text-center">
-                        <h3>Welcome Back</h3>
+                        <h1>Login</h1>
                     </div>
                     <form className="login-form" onSubmit={handleLogin}>
-                        <div>
+                        <div className='input-field'>
                             <label>Email</label>
                             <input
                                 type="email"
@@ -42,7 +42,7 @@ const Login = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
-                        <div>
+                        <div className='input-field'>
                             <label>Password</label>
                             <input
                                 type="password"
@@ -55,7 +55,7 @@ const Login = () => {
                         {errorMessage && <span className='error-message'>{errorMessage}</span>}
                         <button type="submit">Sign In</button>
                     </form>
-                    <p className="text-center">Don't have an account? <Link to={'/signup'}>Sign up</Link></p>
+                    <div className="alternative-link">Don't have an account? <Link to={'/signup'}>Sign up</Link></div>
                 </div>
             </main>
         </div>
