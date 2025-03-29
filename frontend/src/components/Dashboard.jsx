@@ -27,7 +27,15 @@ const Dashboard = () => {
               </h2>
               <div className="time-period">Feb 2024 - Jan 2025</div>
               <h1 className="total-amount">₹ {totalExpenditure}</h1>
+
             </div>
+            {/* <div className='expenditure-card'>
+              <h2 className="">
+                Total Average Expenditure <br /> Over Year
+              </h2>
+              <p className="time-period">Feb 2024 - Jan 2025</p>
+              <h1 className="total-amount">₹ 5,00,000</h1>
+            </div> */}
           </section>
           <section>
             <PieChartComponent />
