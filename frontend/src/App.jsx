@@ -6,7 +6,7 @@ import Product from "./components/Product";
 import Login from "./pages/Login";
 import Register from "./pages/SignUp";
 import Landing from "./pages/Landing";
-import { Route, Routes, Navigate, Router } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import { useAuth } from "./context/AuthContext";
 import Cloud from "./components/Cloud";

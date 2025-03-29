@@ -1,0 +1,127 @@
+/* Auth.css */
+
+/* Wrapper for both login and signup */
+.login-wrapper,
+.signup-wrapper {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: linear-gradient(135deg, #6c63ff, #48c6ef); */
+    font-family: 'Arial', sans-serif;
+
+    .title {
+        display: flex;
+        font-size: 2rem;
+    }
+}
+
+/* Common box for both */
+.login-box, 
+.signup-wrapper > div {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
+    border-radius: 12px;
+    /* background-color: #fff; */
+}
+
+/* Headings */
+.login-box h1, 
+.signup-wrapper h3 {
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Form styles */
+.login-form,
+.signup-wrapper form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input field */
+.input-field,
+.signup-wrapper form > div {
+    margin-bottom: 1rem;
+    padding: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-field label,
+.signup-wrapper label {
+    margin-bottom: 0.5rem;
+    color: #555;
+    font-weight: 600;
+}
+
+.input-field input,
+.signup-wrapper input {
+    padding: 0.25rem;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.input-field input:focus,
+.signup-wrapper input:focus {
+    outline: none;
+    border-color: #6c63ff;
+}
+
+/* Buttons */
+button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #6c63ff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #574b90;
+}
+
+/* Disabled button */
+button[disabled] {
+    background-color: #aaa;
+    cursor: not-allowed;
+}
+
+/* Error message */
+.error-message,
+.signup-wrapper span {
+    color: red;
+    margin-bottom: 1rem;
+    display: block;
+    text-align: center;
+}
+
+/* Alternative links */
+.alternative-link,
+.signup-wrapper form > div:last-child {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.alternative-link a,
+.signup-wrapper a {
+    color: #6c63ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.alternative-link a:hover,
+.signup-wrapper a:hover {
+    text-decoration: underline;
+}
