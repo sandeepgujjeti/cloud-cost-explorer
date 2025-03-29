@@ -15,11 +15,12 @@ const Landing = () => {
         <>
             <main className="main-auth-wrapper text-center">
                 <header className="hero-header">
-                    <button>
-                        <Link to="/signup">Sign Up</Link>
-                    </button><button>
-                        <Link to="/login">Login</Link>
-                    </button>
+                    <Link to="/signup">
+                        <button>Sign Up</button>
+                    </Link>
+                    <Link to="/login">
+                        <button>Login</button>
+                    </Link>
                 </header>
                 <section className="hero-wrapper">
                     <section className="relative">
@@ -39,11 +40,17 @@ const Landing = () => {
                     <img style={{ left: "5%", bottom: "5%", width: "200px", rotate: "10deg", scale: .5, opacity: .5 }} src={images.pyramid} alt="" />
                     <img style={{ top: "10%", right: "-13rem", width: "70%", rotate: "30deg", zIndex: -1, opacity: .25 }} src={images.timeline} alt="" />
                 </section>
-                <section>
+                <section className="relative">
                     <div className="analysis-wrapper">
-                        <div className="analysis"></div>
-                        <div className="analysis"></div>
-                        <div className="analysis"></div>
+                        <div className="row row-1">
+                            <div className="analysis" style={{ backgroundColor: "hsl(120, 80%, 70%, .25)", color: "hsl(120, 80%, 30%)" }}>Overall Analysis</div>
+                            <div className="analysis" style={{ backgroundColor: "hsl(255, 100%, 90%, .25)", color: "hsl(255, 100%, 30%)" }}>Team / Department Analysis</div>
+                        </div>
+                        <div className="row row-2">
+                            <div className="analysis" style={{ backgroundColor: "hsl(50, 100%, 70%, .25)", color: "hsl(50, 100%, 30%)" }}>Product Analysis</div>
+                            <div className="analysis" style={{ backgroundColor: "hsl(10, 100%, 70%, .25)", color: "hsl(10, 100%, 30%)" }}>Cloud Service Analysis</div>
+                        </div>
+                        <img style={{ right: 0, top: "-20vh", scale: 1.25 }} src={images.graphNotes} alt="" />
                     </div>
                 </section>
             </main>

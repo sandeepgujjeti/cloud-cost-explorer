@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import TableAreaComponent from "./Table";
 import PieChartComponent from "./PieChartComponent";
 import LineChartComponent from "./LineChartComponent";
+// import ComposedBarChartComponent from "../components/ComposedChartComponent";
 import { AppContext } from "../App";
 import HorizontalBarChart from "./HorizontalBarChart";
 import "../CSS/team.css";
@@ -33,6 +34,7 @@ const Team = () => {
 
         <section className="line-chart-wrapper">
           <LineChartComponent />
+          {/* <ComposedBarChartComponent /> */}
         </section>
       </section>
 

@@ -18,7 +18,7 @@ import { useContext } from "react";
 import { AppContext } from "../App";
 import { barChartColor } from "../constants/constants";
 
-const BarChartComponent = () => {
+const ComposedBarChartComponent = () => {
     const { analysisType } = useContext(AppContext);
     const [barData, setBarData] = useState([]);
 
@@ -65,4 +65,4 @@ const BarChartComponent = () => {
     );
 };
 
-export default BarChartComponent;
+export default ComposedBarChartComponent;

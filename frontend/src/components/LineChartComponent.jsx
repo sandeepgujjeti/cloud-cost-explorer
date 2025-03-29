@@ -41,6 +41,15 @@ const LineChartComponent = () => {
 
     const baseColor = lineChartColor[analysisType];
 
+    const months = [
+        "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+    ];
+
+    // const completeLineData = months.map(month => ({
+    //     month_name: month,
+    //     total_cost: lineData.find(data => data.month_name.toLowerCase() === month.toLowerCase())?.total_cost || 0
+    // }));
+
     return (
         <ResponsiveContainer width={"100%"} height={300} >
             <LineChart width={300} height={500} data={lineData}>
