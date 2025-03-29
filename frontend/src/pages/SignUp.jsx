@@ -28,13 +28,11 @@ const SignUp = () => {
 
             <main className='signup-wrapper'>
                 <div>
-                    <div>
-                        <div>
-                            <h3>Create a New Account</h3>
-                        </div>
+                    <div className='title'>
+                        <h3>Create a New Account</h3>
                     </div>
                     <form onSubmit={onSubmit}>
-                        <div>
+                        <div className='input-field'>
                             <label>Email</label>
                             <input
                                 type="email"
@@ -44,7 +42,7 @@ const SignUp = () => {
                             />
                         </div>
 
-                        <div>
+                        <div className='input-field'>
                             <label>Password</label>
                             <input
                                 disabled={isRegistering}
@@ -55,7 +53,7 @@ const SignUp = () => {
                             />
                         </div>
 
-                        <div>
+                        <div className='input-field'>
                             <label>Confirm Password</label>
                             <input
                                 disabled={isRegistering}
